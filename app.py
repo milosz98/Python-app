@@ -54,7 +54,7 @@ class App:
         for entry in entries: # Iteruje po każdej krotce w liście entries, reprezentującej jeden wpis
             entry_id, title, content, createed_at = entry # Rozpakowuje wartości kolumn z krotki entry i przypisuje je do zmiennych entry_id, title, content i created_at. Każda zmienna odpowiada jednej kolumnie w tabeli "entries"
             print(f"ID: {entry_id}") # Wyświetla identyfikator wpisu
-            print(f"Title: {title}")
-            print(f"Content: {entry_id}")
-            print(f"Created at: {entry_id}")
-            print()
+            print(f"Title: {title}") # Wyświetla tytuł wpisu
+            print(f"Content: {entry_id}") # Wyświetla treść wpisu
+            print(f"Created at: {entry_id}") # Wyświetla datę i czas utworzenia wpisu
+            print() # Wyświetla pusty wiersz, żeby oddzielić kolejne wpisy od siebie
