@@ -16,7 +16,7 @@ class App:
 
         # Tworzenie tabeli pozycji
         self.cursor.execute("""
-            CREATE TABLE IF NOT EXISTS headers (
+            CREATE TABLE IF NOT EXISTS items (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 header_id INTEGER,
                 content TEXT,
@@ -26,7 +26,7 @@ class App:
 
         # Tworzenie tabeli wpisów
         self.cursor.execute("""
-            CREATE TABLE IF NOT EXISTS headers (
+            CREATE TABLE IF NOT EXISTS entries (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 header_id INTEGER,
                 item_id INTEGER,
@@ -40,10 +40,23 @@ class App:
 
 # -------------------------------------------------------------------------------------------------------------------------------------
     
-    def addEntry(self, title, content): # Metoda dodająca nowy wpis do tabeli "entries" używając wartości przekazanych jako argumenty "title" i "content" oraz bieżącej daty i czasu
+    def addEntry(self, header_title, item_content): # Metoda dodająca nowy wpis do tabeli "entries" używając wartości przekazanych jako argumenty "title" i "content" oraz bieżącej daty i czasu
         created_at = datetime.now().strftime("%d-%m-%Y %H:%M:%S") # Zmienna "created_at" przechowuje bieżącą datę i czas
-        self.cursor.execute("INSERT INTO entries (title, content, created_at) VALUES (?, ?, ?)", (title, content, created_at)) # Wykonuje polecenie INSERT INTO w bazie danych. Wstawia nowy wpis (rekord) do tabeli "entries" z wartościami kolumn "title", "content" i "created_at". Wartości tych kolumn są przekazywane jako parametry za pomocą znaków zapytania (?), a ich rzeczywiste wartości są dostarczane jako krotka (title, content, created_at)
+        
+        # Dodawanie nagłówka
+        self.cursor.execute("INSERT INTO headers (title) VALUES (?)", (header_title,)) # Dodaje nowy nagłówek z wartością kolumny "title" pobraną z argumentu header_title. Wartość kolumny jest przekazywana jako parametr za pomocą znaku zapytania (?), a jej rzeczywista wartość jest dostarczana jako krotka (header_title,)
+        header_id = self.cursor.lastrowid
+
+        # Dodawanie pozycji
+        self.cursor.execute("INSERT INTO items (header_id, content) VALUES (?, ?)", (header_id, item_content))
+        item_id = self.cursor.lastrowid
+
+        # Dodawanie wpisu
+        self.cursor.execute("INSERT INTO entries (header_id, item_id, created_at) VALUES (?, ?, ?)", (header_id, item_id, created_at))
         self.conn.commit()
+
+        #self.cursor.execute("INSERT INTO entries (title, content, created_at) VALUES (?, ?, ?)", (title, content, created_at)) # Wykonuje polecenie INSERT INTO w bazie danych. Wstawia nowy wpis (rekord) do tabeli "entries" z wartościami kolumn "title", "content" i "created_at". Wartości tych kolumn są przekazywane jako parametry za pomocą znaków zapytania (?), a ich rzeczywiste wartości są dostarczane jako krotka (title, content, created_at)
+        #self.conn.commit()
 
 # -------------------------------------------------------------------------------------------------------------------------------------
 
