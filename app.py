@@ -1,5 +1,5 @@
 import sqlite3
-
+from datetime import datetime
 
 class App:
     def __init__(self, database_name):
@@ -18,4 +18,9 @@ class App:
 
         self.conn.commit() # Zatwierdza wszystkie zmiany dokonane w bazie danych. W tym przypadku, zapisuje utworzoną tabelę do bazy danych
 
+# -------------------------------------------------------------------------------------------------------------------------------------
     
+    def addEntry(self, title, content):
+        created_at = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        self.cursor.execute("INSERT INTO entries (title, content, created_at) VALUES (?, ?, ?)", (title, content, created_at))
+        self.conn.commit()
