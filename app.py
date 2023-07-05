@@ -36,7 +36,7 @@ class App:
             )
         """)
 
-        self.conn.commit() # Zatwierdza wszystkie zmiany dokonane w bazie danych. W tym przypadku, zapisuje utworzoną tabelę do bazy danych
+        self.conn.commit() # Zatwierdza wszystkie zmiany dokonane w bazie danych
 
 # -------------------------------------------------------------------------------------------------------------------------------------
     
