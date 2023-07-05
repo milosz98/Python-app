@@ -1,0 +1,8 @@
+Zbuduj aplikacje w pythonie która będzie dodawała wpisy do bazy danych, a potem wyświetlała je w terminalu (poza frameworkiem frappe). 
+Zrób zwykła apkę w pythonie i podłącz ją do jakiejś bazy danych. Baze danych możesz ogarnąć gdziekolwiek. Może sprawdź "Airtable bo tam masz taki ładniutki podgląd do danych, albo po prostu na jakimś darmowym hostingu załóż sobie. ( CDA.pl)
+
+Popatrzeć jak budować model danych, jak na modelu danych operować
+
+** można też zobaczyć jak takie coś utworzyć dynamicznie **
+
+Zrobić kilka operacji na tym
