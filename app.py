@@ -65,11 +65,11 @@ class App:
         entries = self.cursor.fetchall() # Pobiera wszystkie wiersze wynikowe z kursora i przypisuje je do zmiennej entries jako listę krotek. Każda krotka reprezentuje jeden wpis z tabeli "entries"
 
         for entry in entries: # Iteruje po każdej krotce w liście entries, reprezentującej jeden wpis
-            entry_id, title, content, createed_at = entry # Rozpakowuje wartości kolumn z krotki entry i przypisuje je do zmiennych entry_id, title, content i created_at. Każda zmienna odpowiada jednej kolumnie w tabeli "entries"
+            entry_id, title, content, created_at = entry # Rozpakowuje wartości kolumn z krotki entry i przypisuje je do zmiennych entry_id, title, content i created_at. Każda zmienna odpowiada jednej kolumnie w tabeli "entries"
             print(f"ID: {entry_id}") # Wyświetla identyfikator wpisu
             print(f"Title: {title}") # Wyświetla tytuł wpisu
-            print(f"Content: {entry_id}") # Wyświetla treść wpisu
-            print(f"Created at: {entry_id}") # Wyświetla datę i czas utworzenia wpisu
+            print(f"Content: {content}") # Wyświetla treść wpisu
+            print(f"Created at: {created_at}") # Wyświetla datę i czas utworzenia wpisu
             print() # Wyświetla pusty wiersz, żeby oddzielić kolejne wpisy od siebie
 
 # -------------------------------------------------------------------------------------------------------------------------------------
@@ -79,3 +79,15 @@ class App:
             self.addEntry(header_title, item_content) # Wywołanie metody "addEntry" z przekazanymi argumentami "header_title" oraz "item_content". Metoda addEntry jest odpowiedzialna za dodanie wpisu do bazy danych na podstawie przekazanych informacji o nagłówku i pozycji
 
         self.displayEntries() # "displayEntries" jest odpowiedzialny za wyświetlenie wszystkich wpisów z bazy danych w terminalu
+
+# -------------------------------------------------------------------------------------------------------------------------------------
+
+app = App("jakasbaza.db")
+
+data = [("Nagłówek 1", "Pozycja 1"), ("Nagłówek 2", "Pozycja 2")]
+
+app.processData(data)
+
+app.displayEntries()
+
+app.addEntry("Nagłówek 3", "Pozycja 3")
