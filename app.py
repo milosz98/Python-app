@@ -60,7 +60,7 @@ class App:
 
 # -------------------------------------------------------------------------------------------------------------------------------------
 
-    def display_entries(self):
+    def displayEntries(self):
         self.cursor.execute("SELECT * FROM entries") # Pobiera wszystkie kolumny (*) z tabeli "entries" i zwraca wynik w postaci kursora
         entries = self.cursor.fetchall() # Pobiera wszystkie wiersze wynikowe z kursora i przypisuje je do zmiennej entries jako listę krotek. Każda krotka reprezentuje jeden wpis z tabeli "entries"
 
@@ -71,3 +71,11 @@ class App:
             print(f"Content: {entry_id}") # Wyświetla treść wpisu
             print(f"Created at: {entry_id}") # Wyświetla datę i czas utworzenia wpisu
             print() # Wyświetla pusty wiersz, żeby oddzielić kolejne wpisy od siebie
+
+# -------------------------------------------------------------------------------------------------------------------------------------
+
+    def processData(self, data): # Data reprezentuje dane wejściowe
+        for header_title, item_content in data: # Iteracja po elementach "data", które są krotkami, przypisując wartości do zmiennych "header_title" oraz "item_content". Zakładamy, że każda krotka w "data" zawiera parę wartości: tytuł nagłówka (header_title) i treść pozycji (item_content)
+            self.addEntry(header_title, item_content) # Wywołanie metody "addEntry" z przekazanymi argumentami "header_title" oraz "item_content". Metoda addEntry jest odpowiedzialna za dodanie wpisu do bazy danych na podstawie przekazanych informacji o nagłówku i pozycji
+
+        self.displayEntries() # Metoda displayEntries jest odpowiedzialna za wyświetlenie wszystkich wpisów z bazy danych w terminalu
