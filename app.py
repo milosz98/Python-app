@@ -74,8 +74,8 @@ class App:
 
 # -------------------------------------------------------------------------------------------------------------------------------------
 
-    def processData(self, data): # Data reprezentuje dane wejściowe
+    def processData(self, data): # "data" reprezentuje dane wejściowe
         for header_title, item_content in data: # Iteracja po elementach "data", które są krotkami, przypisując wartości do zmiennych "header_title" oraz "item_content". Zakładamy, że każda krotka w "data" zawiera parę wartości: tytuł nagłówka (header_title) i treść pozycji (item_content)
             self.addEntry(header_title, item_content) # Wywołanie metody "addEntry" z przekazanymi argumentami "header_title" oraz "item_content". Metoda addEntry jest odpowiedzialna za dodanie wpisu do bazy danych na podstawie przekazanych informacji o nagłówku i pozycji
 
-        self.displayEntries() # Metoda displayEntries jest odpowiedzialna za wyświetlenie wszystkich wpisów z bazy danych w terminalu
+        self.displayEntries() # "displayEntries" jest odpowiedzialny za wyświetlenie wszystkich wpisów z bazy danych w terminalu
